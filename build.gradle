@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     implementation 'com.amazonaws:aws-java-sdk-s3:1.11.127'
-    implementation 'com.beust:jcommander:1.64'
+    implementation 'com.beust:jcommander:1.82'
 
     implementation 'commons-logging:commons-logging:1.1.1'
     implementation 'log4j:log4j:1.2.17'
