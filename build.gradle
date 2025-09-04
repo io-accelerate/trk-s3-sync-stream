@@ -4,13 +4,13 @@ plugins {
     id 'application'
     id 'signing'
     id 'maven-publish'
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id('com.github.johnrengelman.shadow') version '8.1.1'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
-group = 'ro.ghionoiu'
+group = 'io.accelerate'
 version = project.version.toString()
 
 repositories {
@@ -43,7 +43,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:4.11.0'
     testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
 
-    testImplementation 'commons-io:commons-io:2.5'
+    testImplementation 'commons-io:commons-io:2.14.0'
     testImplementation 'net.trajano.commons:commons-testing:1.0.1'
 }
 
@@ -97,7 +97,7 @@ publishing {
             pom {
                 name = 'S3 Sync Stream'
                 description = 'Library that continuously syncs the contents of a folder to an S3 bucket. Optimised for streaming file formats (video, logs).'
-                url = 'https://github.com/julianghionoiu/s3-sync-stream'
+                url = 'https://github.com/io-accelerate/trkl-s3-sync-stream'
                 licenses {
                     license {
                         name = 'Apache License, Version 2.0'
@@ -108,14 +108,14 @@ publishing {
                     developer {
                         name = 'Iulian (Julian) Ghionoiu'
                         email = 'iulian.ghionoiu@gmail.com'
-                        organization = 'Iulian Ghionoiu'
-                        organizationUrl = 'https://github.com/julianghionoiu'
+                        organization = 'Accelerate.io'
+                        organizationUrl = 'https://github.com/io-accelerate'
                     }
                 }
                 scm {
-                    connection = 'scm:git:git@github.com:julianghionoiu/s3-sync-stream.git'
-                    developerConnection = 'scm:git:git@github.com:julianghionoiu/s3-sync-stream.git'
-                    url = 'git@github.com:julianghionoiu/s3-sync-stream.git'
+                    connection = 'scm:git:git@github.com:io-accelerate/trkl-s3-sync-stream.git'
+                    developerConnection = 'scm:git:git@github.com:io-accelerate/trkl-s3-sync-stream.git'
+                    url = 'git@github.com:io-accelerate/trkl-s3-sync-stream.git'
                 }
             }
         }

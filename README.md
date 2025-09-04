@@ -1,4 +1,4 @@
-[![Java Version](http://img.shields.io/badge/Java-1.8-blue.svg)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+# trkl-s3-sync-stream
 
 `s3-sync-stream` is library that continuously syncs the contents of a folder to an S3 bucket. Optimised for streaming file formats (video, logs).
 

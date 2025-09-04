@@ -1,0 +1,36 @@
+name: Unit test
+
+on: [push]
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+    services:
+      minio:
+        image: minio/minio:RELEASE.2017-05-05T01-14-51Z
+        ports:
+          - 9000:9000
+        env:
+          MINIO_ACCESS_KEY: minio_access_key
+          MINIO_SECRET_KEY: minio_secret_key
+          MINIO_BROWSER: off
+        command: server /data
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      # ~~~~~~~~~~~~~ Java setup ~~~~~~~~~~~~~
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: '21'
+          cache: 'gradle'
+      - name: Display Java version
+        run: java --version
+        
+      # ~~~~~~~~~~~~~ Test ~~~~~~~~~~~~~
+      - name: Run gradle tests
+        run: ./gradlew test
