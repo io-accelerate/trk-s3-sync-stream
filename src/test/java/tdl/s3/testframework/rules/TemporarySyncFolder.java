@@ -3,7 +3,7 @@ package tdl.s3.testframework.rules;
 import ch.qos.logback.core.encoder.ByteArrayUtil;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.IOUtils;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,18 +22,10 @@ public class TemporarySyncFolder {
     public static final int PART_SIZE_IN_BYTES = 5 * 1024 * 1024;
     public static final int ONE_MEGABYTE = 1024 * 1024;
 
-    private final TemporaryFolder temporaryFolder;
+    private final Path tempDir;
 
-    public TemporarySyncFolder() {
-        this.temporaryFolder = new TemporaryFolder();
-    }
-
-    public void beforeEach() throws Throwable {
-        temporaryFolder.create();
-    }
-
-    public void afterEach() {
-        temporaryFolder.delete();
+    public TemporarySyncFolder(Path tempDir) {
+        this.tempDir = tempDir;
     }
 
     //~~~ Modifiers
@@ -80,7 +72,7 @@ public class TemporarySyncFolder {
     //~~~ Accessors
 
     public Path getFolderPath() {
-        return temporaryFolder.getRoot().toPath();
+        return tempDir;
     }
 
     public Map<Integer, String> getPartsHashes(String fileName) throws IOException, NoSuchAlgorithmException {

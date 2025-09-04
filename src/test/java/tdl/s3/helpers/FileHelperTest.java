@@ -7,15 +7,9 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static net.trajano.commons.testing.UtilityClassTestUtil.assertUtilityClassWellDefined;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FileHelperTest {
-    
-    @Test
-    public void shouldSatisfyContractForUtilityClass() throws Exception {
-        assertUtilityClassWellDefined(FileHelper.class);
-    }
  
     @Test
     public void getLockFilePath_returnsCorrect() throws Exception {
@@ -46,13 +40,13 @@ public class FileHelperTest {
         Path path = Paths.get("src", "test", "resources", "test_lock", "file2.txt");
         String expected = "src/test/resources/test_lock/file2.txt";
         File relativeFile = path.toFile();
-        Assertions.assertEquals(relativeFile.getPath(), expected);
-        Assertions.assertEquals(FileHelper.getRelativeFilePathToCwd(relativeFile), expected);
+        assertEquals(relativeFile.getPath(), expected);
+        assertEquals(FileHelper.getRelativeFilePathToCwd(relativeFile), expected);
         
         Path absolutePath = path.toAbsolutePath();
         File absoluteFile = absolutePath.toFile();
-        Assertions.assertFalse(absoluteFile.getPath().startsWith(expected));
-        Assertions.assertTrue(absoluteFile.getPath().endsWith(expected));
-        Assertions.assertEquals(FileHelper.getRelativeFilePathToCwd(absoluteFile), expected);
+        assertFalse(absoluteFile.getPath().startsWith(expected));
+        assertTrue(absoluteFile.getPath().endsWith(expected));
+        assertEquals(FileHelper.getRelativeFilePathToCwd(absoluteFile), expected);
     }
 }

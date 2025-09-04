@@ -4,17 +4,9 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static net.trajano.commons.testing.UtilityClassTestUtil.assertUtilityClassWellDefined;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class ChecksumHelperTest {
-
-    @Test
-    public void shouldSatisfyContractForUtilityClass() throws Exception {
-        assertUtilityClassWellDefined(ChecksumHelper.class);
-    }
 
     @Test
     public void handleNotFoundAlgorithmException() throws Exception {

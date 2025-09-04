@@ -1,8 +1,8 @@
 package tdl.s3.upload;
 
 import com.amazonaws.services.s3.model.UploadPartRequest;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import tdl.s3.sync.destination.Destination;
 import tdl.s3.sync.destination.DestinationOperationException;
 
@@ -18,7 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class MultipartUploadFileTest {
@@ -31,7 +32,7 @@ public class MultipartUploadFileTest {
 
     private String mockRemotePath;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         testPath = Paths.get("src", "test", "resources", "test_dir");
         mockRemotePath = "file.txt";
@@ -40,13 +41,13 @@ public class MultipartUploadFileTest {
         when(mockFile.toPath()).thenReturn(testPath);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void validateUploadedFileSizeShouldThrowException() throws DestinationOperationException {
         when(mockFile.length()).thenReturn(Long.valueOf(-1));
         MultipartUploadFile multipartUploadFile = new MultipartUploadFile(mockFile, mockRemotePath, mockDestination);
         multipartUploadFile.getFile();
         multipartUploadFile.getUploadId();
-        multipartUploadFile.validateUploadedFileSize();
+        assertThrows(IllegalStateException.class, multipartUploadFile::validateUploadedFileSize);
     }
 
     @Test
@@ -83,6 +84,6 @@ public class MultipartUploadFileTest {
         List<UploadPartRequest> requests = multipartUploadFile.streamUploadPartRequestForFailedParts()
                 .collect(Collectors.toList());
 
-        assertEquals(requests.size(), 3);
+        assertEquals(3, requests.size());
     }
 }

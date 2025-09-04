@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tdl.s3.testframework.rules.LocalTestBucket;
 
-import static org.junit.Assert.assertNotNull;
-
 public class LocalS3Test {
 
     public LocalTestBucket testBucket;

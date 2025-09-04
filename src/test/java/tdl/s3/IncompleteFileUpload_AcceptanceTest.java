@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import tdl.s3.sync.Filters;
 import tdl.s3.sync.RemoteSync;
 import tdl.s3.sync.Source;
@@ -32,10 +33,12 @@ public class IncompleteFileUpload_AcceptanceTest {
 
     public LocalTestBucket testBucket;
 
+    @TempDir
+    private Path tempDir;
+    
     @BeforeEach
     void setUp() throws Throwable {
-        targetSyncFolder = new TemporarySyncFolder();
-        targetSyncFolder.beforeEach();
+        targetSyncFolder = new TemporarySyncFolder(tempDir);
         testBucket = new LocalTestBucket();
         testBucket.beforeEach();
         defaultFilters = Filters.getBuilder()
@@ -43,12 +46,7 @@ public class IncompleteFileUpload_AcceptanceTest {
                 .include(Filters.endsWith("bin"))
                 .create();
     }
-
-    @AfterEach
-    void tearDown() {
-        targetSyncFolder.afterEach();
-    }
-
+    
     @Test
     public void should_upload_incomplete_file() throws Exception {
         String fileName = "unfinished_writing_file.bin";

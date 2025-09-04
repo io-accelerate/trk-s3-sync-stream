@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class S3BucketDestinationTest {

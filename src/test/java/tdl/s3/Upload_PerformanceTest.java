@@ -1,10 +1,10 @@
 package tdl.s3;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import tdl.s3.sync.Filters;
 import tdl.s3.sync.RemoteSync;
 import tdl.s3.sync.Source;
@@ -19,7 +19,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
 import static tdl.s3.testframework.rules.TemporarySyncFolder.ONE_MEGABYTE;
 
 public class Upload_PerformanceTest {
@@ -30,14 +29,16 @@ public class Upload_PerformanceTest {
 
     private Filters defaultFilters;
 
+    @TempDir
+    private Path tempDir;
+    
     public TemporarySyncFolder targetSyncFolder;
 
     public LocalTestBucket testBucket;
 
     @BeforeEach
     void setUp() throws Throwable {
-        targetSyncFolder = new TemporarySyncFolder();
-        targetSyncFolder.beforeEach();
+        targetSyncFolder = new TemporarySyncFolder(tempDir);
         testBucket = new LocalTestBucket();
         testBucket.beforeEach();
         destination = new PerformanceMeasureDestination(testBucket.asDestination());
@@ -46,13 +47,7 @@ public class Upload_PerformanceTest {
                 .include(Filters.endsWith("bin"))
                 .create();
     }
-
-    @AfterEach
-    void tearDown() {
-        targetSyncFolder.afterEach();
-    }
-
-
+    
     @Test
     public void uploadAlreadyUploadedFiles() {
         //8 files inside

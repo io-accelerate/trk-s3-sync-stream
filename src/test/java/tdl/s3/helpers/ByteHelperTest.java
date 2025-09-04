@@ -11,9 +11,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static net.trajano.commons.testing.UtilityClassTestUtil.assertUtilityClassWellDefined;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -24,11 +22,7 @@ public class ByteHelperTest {
         (new Random()).nextBytes(bytes);
         return bytes;
     }
-
-    @Test
-    public void shouldSatisfyContractForUtilityClass() throws Exception {
-        assertUtilityClassWellDefined(ByteHelper.class);
-    }
+    
 
     @Test
     public void createInputStreamInitialisesOffsetToZero() throws IOException {

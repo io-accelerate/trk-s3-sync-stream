@@ -15,8 +15,6 @@ import java.nio.file.Paths;
 import java.time.Instant;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class FileUpload_AcceptanceTest {
 

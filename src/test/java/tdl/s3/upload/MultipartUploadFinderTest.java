@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import tdl.s3.sync.destination.DestinationOperationException;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class MultipartUploadFinderTest {

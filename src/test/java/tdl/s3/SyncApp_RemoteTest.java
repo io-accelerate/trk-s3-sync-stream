@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import tdl.s3.testframework.rules.RemoteTestBucket;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public class SyncApp_RemoteTest {
 

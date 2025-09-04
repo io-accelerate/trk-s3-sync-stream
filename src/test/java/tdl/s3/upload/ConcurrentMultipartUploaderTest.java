@@ -16,7 +16,6 @@ import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class ConcurrentMultipartUploaderTest {

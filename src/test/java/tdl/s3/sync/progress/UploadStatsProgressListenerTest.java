@@ -1,11 +1,11 @@
 package tdl.s3.sync.progress;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,7 +14,7 @@ public class UploadStatsProgressListenerTest {
     private UploadStatsProgressListener listener;
     private File file;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         listener = new UploadStatsProgressListener();
         file = mock(File.class);
@@ -36,21 +36,21 @@ public class UploadStatsProgressListenerTest {
     public void handleTimestampZeroFileUploadStat() throws InterruptedException {
         listener.uploadFileStarted(file, "upload", 0);
         UploadStatsProgressListener.FileUploadStat stat = listener.getCurrentStats().get();
-        assertEquals(stat.getMBps(), 0.0, 0.1);
+        assertEquals(0.0, stat.getMBps(), 0.1);
         Thread.sleep(100);
         stat.incrementUploadedSize(500000);
-        assertNotEquals(stat.getMBps(), 0.0, 0.1);
+        assertNotEquals(0.0, stat.getMBps(), 0.1);
     }
 
     @Test
     public void upload() {
         listener.uploadFileStarted(file, "upload", 0);
         UploadStatsProgressListener.FileUploadStat stat = listener.getCurrentStats().get();
-        assertEquals(stat.getTotalSize(), 1000000);
-        assertEquals(stat.getUploadedSize(), 0);
+        assertEquals(1000000, stat.getTotalSize());
+        assertEquals(0, stat.getUploadedSize());
         listener.uploadFileProgress("upload", 500000);
-        assertEquals(stat.getUploadedSize(), 500000);
-        assertEquals(stat.getUploadRatio(), 0.5, 0.001);
+        assertEquals(500000, stat.getUploadedSize());
+        assertEquals(0.5, stat.getUploadRatio(), 0.001);
         listener.uploadFileFinished(file);
         assertFalse(listener.isCurrentlyUploading());
     }

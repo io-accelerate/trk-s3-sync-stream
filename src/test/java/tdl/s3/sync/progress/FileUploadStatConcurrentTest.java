@@ -3,8 +3,6 @@ package tdl.s3.sync.progress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class FileUploadStatConcurrentTest {
 
     class CounterRunnable implements Runnable {

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import tdl.s3.sync.destination.Destination;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
