@@ -6,21 +6,27 @@ jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
-    services:
-      minio:
-        image: minio/minio:RELEASE.2017-05-05T01-14-51Z
-        ports:
-          - 9000:9000
-        env:
-          MINIO_ACCESS_KEY: minio_access_key
-          MINIO_SECRET_KEY: minio_secret_key
-          MINIO_BROWSER: off
-        options: >-
-          server /data
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
+          
+      # ~~~~~~~~~~~~~ Start minio ~~~~~~~~~~~~~
+      - name: Launch MinIO
+        run: |
+          docker run -d --name minio \
+            -p 9000:9000 \
+            -e MINIO_ROOT_USER=minio \
+            -e MINIO_ROOT_PASSWORD=minio123 \
+            minio/minio:latest server /data
+          
+          # simple health wait (replace with curl if you prefer)
+          for i in {1..30}; do
+            if curl -fsS http://localhost:9000/minio/health/live > /dev/null; then
+              echo "MinIO is up"; break
+            fi
+            sleep 1
+          done
 
       # ~~~~~~~~~~~~~ Java setup ~~~~~~~~~~~~~
       - name: Set up Java
