@@ -16,9 +16,10 @@ jobs:
         run: |
           docker run -d --name minio \
             -p 9000:9000 \
-            -e MINIO_ROOT_USER=minio \
-            -e MINIO_ROOT_PASSWORD=minio123 \
-            minio/minio:latest server /data
+            -e MINIO_ROOT_USER=minio_access_key \
+            -e MINIO_ROOT_PASSWORD=minio_secret_key \
+            -e "MINIO_BROWSER=off" \
+            minio/minio:RELEASE.2017-05-05T01-14-51Z server /data
           
           # simple health wait (replace with curl if you prefer)
           for i in {1..30}; do
