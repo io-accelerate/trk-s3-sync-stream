@@ -1,4 +1,4 @@
-name: Unit test
+name: Deploy as Github Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  build-and-test:
+  build-only:
 
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +39,7 @@ jobs:
 
   github-release:
     runs-on: ubuntu-latest
-    needs: build-and-test
+    needs: build-only
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
