@@ -3,7 +3,7 @@
 # Set the vars
 # shellcheck disable=SC2002
 CURRENT_VERSION=$(cat gradle.properties | grep version | cut -d "=" -f2)
-ARTIFACT_NAME=s3-sync-stream-lib
+ARTIFACT_NAME=s3-sync-stream
 ARTIFACT_PATH=io/accelerate/${ARTIFACT_NAME}
 ARTIFACT_PATH_WITH_VERSION=${ARTIFACT_PATH}/${CURRENT_VERSION}
 
