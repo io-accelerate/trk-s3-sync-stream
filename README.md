@@ -246,3 +246,13 @@ Generate the Maven Central bundle:
 
 Upload the bundle to Maven Central by clicking the "Publish Component" button.
 https://central.sonatype.com/publishing
+
+### To build artifacts in Github
+
+Commit all changes then:
+```bash
+export RELEASE_TAG="v$(cat gradle.properties | cut -d= -f2)"
+git tag -a "${RELEASE_TAG}" -m "${RELEASE_TAG}"
+git push --tags
+git push
+```
