@@ -1,6 +1,9 @@
 name: Unit test
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - '**'  # Ignore all tags
 
 jobs:
   build-and-test:

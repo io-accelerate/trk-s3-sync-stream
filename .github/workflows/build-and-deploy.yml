@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  issues: write
+
 jobs:
   build-only:
 
