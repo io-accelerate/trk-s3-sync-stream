@@ -1,1 +1,3 @@
-rootProject.name = 'trkl-s3-sync-stream'
+include 'build-logic'
+include 's3-sync-stream-cli'
+include 's3-sync-stream-lib'

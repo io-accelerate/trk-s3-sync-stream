@@ -146,17 +146,12 @@ Run the local tests
 ```
 ./gradlew test -i
 ```
-
-Run remote tests
-```
-./gradlew remoteS3Tests -i
-```
-
+[s3-sync-stream-cli-0.0.17-all.jar](s3-sync-stream-cli/build/libs/s3-sync-stream-cli-0.0.17-all.jar)
 ### Build and run as command-line app
 ```bash
-./gradlew shadowJar
+./gradlew clean shadowJar -i
 java -Dlogback.configurationFile=`pwd`/logback.xml \
-    -jar ./build/libs/s3-sync-stream-0.0.6-SNAPSHOT-all.jar \
+    -jar ./s3-sync-stream-cli/build/libs/s3-sync-stream-cli-0.0.17-all.jar \
     -c ./.private/aws-test-secrets \
     -d ./src/test/resources/test_a_1 \
     --filter "^[0-9a-zA-Z\\_]+\\.txt$"
@@ -219,30 +214,35 @@ aws s3api complete-multipart-upload \
   --upload-id "jdB1Q.SRfhk0wdRalRHJNLvE8xEoiH5TiQPBrnG2_hkU1oc9wcQSQgM4FcEUmDxNuA2FGHUigd_0LwkovflgXupcQMXCuJ_xYML9ZtKlX4LS8PaXXxaNcA4WOexreZoZ.fZ_NxDHxqCbg15H6enZdg--"
 ```
 
-### Publish to Maven Central
+
+### Release
+
+Configure the version inside the "gradle.properties" file
+
+Create publishing bundle into Maven Local
+```bash
+./gradlew publishToMavenLocal
+```
+
+Check Maven Local contains release version:
+```
+CURRENT_VERSION=$(cat gradle.properties | grep version | cut -d "=" -f2)
+
+ls -l $HOME/.m2/repository/io/accelerate/s3-sync-stream-lib/${CURRENT_VERSION}
+```
 
 Publish to Maven Central Staging repo
-```bash
-./gradlew publish
+
+### Publish to Maven Central - the manual way
+
+At this point publishing to Maven Central from Gradle is only possible manually.
+Things might have changed, check this page:
+https://central.sonatype.org/publish/publish-portal-gradle/
+
+Generate the Maven Central bundle:
+```
+./generateMavenCentralBundle.sh
 ```
 
-A Staging repository is created automatically:
-https://oss.sonatype.org/#stagingRepositories
-
-To promote to the Live repo, do the following:
-- "Close" the Staging repo, Sonatype Lift will scan the repo for vuln, check the email
-- "Refresh" the Staging repos
-- "Release" the repo
-- wait between 15 mins and up to 2 hours for the new version to appear in Central
-- first check the Web UI: https://oss.sonatype.org/#view-repositories;releases~browsestorage
-- then check: https://repo1.maven.org/maven2/ro/ghionoiu/dev-screen-record/
-
-### To build artifacts in Github
-
-Commit all changes then:
-```bash
-export RELEASE_TAG="v$(cat gradle.properties | cut -d= -f2)"
-git tag -a "${RELEASE_TAG}" -m "${RELEASE_TAG}"
-git push --tags
-git push
-```
+Upload the bundle to Maven Central by clicking the "Publish Component" button.
+https://central.sonatype.com/publishing

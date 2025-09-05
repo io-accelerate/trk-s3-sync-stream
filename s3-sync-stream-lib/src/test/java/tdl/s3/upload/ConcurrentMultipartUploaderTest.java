@@ -1,7 +1,6 @@
 package tdl.s3.upload;
 
 import com.amazonaws.services.s3.model.UploadPartRequest;
-import com.beust.jcommander.internal.Lists;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -46,7 +45,7 @@ public class ConcurrentMultipartUploaderTest {
 
         ConcurrentMultipartUploader uploader = new ConcurrentMultipartUploader(destination);
 
-        List<UploadPartRequest> requests = Lists.newArrayList(
+        List<UploadPartRequest> requests = List.of(
                 mock(UploadPartRequest.class),
                 mock(UploadPartRequest.class)
         );
