@@ -228,7 +228,7 @@ Check Maven Local contains release version:
 ```
 CURRENT_VERSION=$(cat gradle.properties | grep version | cut -d "=" -f2)
 
-ls -l $HOME/.m2/repository/io/accelerate/s3-sync-stream-lib/${CURRENT_VERSION}
+ls -l $HOME/.m2/repository/io/accelerate/s3-sync-stream/${CURRENT_VERSION}
 ```
 
 Publish to Maven Central Staging repo
