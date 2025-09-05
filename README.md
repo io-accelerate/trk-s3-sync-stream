@@ -16,8 +16,8 @@ The library will aggresively upload content as it is being generated:
 Add a dependency to `tdl:s3-sync-stream` in `compile` scope. See `bintray` shield for latest release number.
 ```xml
 <dependency>
-  <groupId>ro.ghionoiu</groupId>
-  <artifactId>s3-sync-stream</artifactId>
+  <groupId>io.accelerate</groupId>
+  <artifactId>s3-sync-stream-lib</artifactId>
   <version>X.Y.Z</version>
 </dependency>
 ```

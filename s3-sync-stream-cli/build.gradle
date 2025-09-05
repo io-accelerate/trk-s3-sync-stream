@@ -8,7 +8,7 @@ plugins {
 }
 
 application {
-    mainClass = "tdl.s3.SyncFileApp"
+    mainClass = "io.accelerate.tracking.sync.SyncFileApp"
 }
 
 apply from: project(':build-logic').file('shared.gradle')
