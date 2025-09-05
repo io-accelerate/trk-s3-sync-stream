@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 permissions:
-  issues: write
+  contents: write
 
 jobs:
   build-only:
@@ -28,7 +28,7 @@ jobs:
         run: java --version
       
       # ~~~~~~~~~~~~~ Build ~~~~~~~~~~~~~
-      - name: Run gradle tests
+      - name: Run shadowJar
         run: ./gradlew shadowJar -x test
       - name: Archive Binary
         uses: actions/upload-artifact@v4
