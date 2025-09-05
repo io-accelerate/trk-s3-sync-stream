@@ -8,7 +8,7 @@ publishing {
             pom {
                 name = 'Java client for TDL system'
                 description = 'A Java client that allows users to get up to speed with the TDL system.'
-                url = 'https://github.com/io-accelerate/trk-s3-sync-stream'
+                url = 'https://github.com/io-accelerate/trk-sync-to-s3'
                 licenses {
                     license {
                         name = 'Apache License, Version 2.0'
@@ -24,9 +24,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git@github.com:io-accelerate/trk-s3-sync-stream.git'
-                    developerConnection = 'scm:git:git@github.com:io-accelerate/trk-s3-sync-stream.git'
-                    url = 'git@github.com:io-accelerate/trk-s3-sync-stream.git'
+                    connection = 'scm:git:git@github.com:io-accelerate/trk-sync-to-s3.git'
+                    developerConnection = 'scm:git:git@github.com:io-accelerate/trk-sync-to-s3.git'
+                    url = 'git@github.com:io-accelerate/trk-sync-to-s3.git'
                 }
             }
         }

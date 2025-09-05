@@ -1,3 +1,3 @@
 include 'build-logic'
-include 's3-sync-stream-cli'
-include 's3-sync-stream'
+include 'sync-to-s3-cli'
+include 'sync-to-s3'

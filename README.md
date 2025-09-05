@@ -1,6 +1,6 @@
-# trkl-s3-sync-stream
+# trkl-sync-to-s3
 
-`s3-sync-stream` is library that continuously syncs the contents of a folder to an S3 bucket. Optimised for streaming file formats (video, logs).
+This library that continuously syncs the contents of a folder to an S3 bucket. Optimised for streaming file formats (video, logs).
 
 The library will aggresively upload content as it is being generated:
 * Each chunk will be uploaded as a part in a multipart upload
@@ -13,11 +13,11 @@ The library will aggresively upload content as it is being generated:
 
 ### Add as Maven dependency
 
-Add a dependency to `tdl:s3-sync-stream` in `compile` scope. See `bintray` shield for latest release number.
+Add a dependency to `tdl:sync-to-s3` in `compile` scope. See `bintray` shield for latest release number.
 ```xml
 <dependency>
   <groupId>io.accelerate</groupId>
-  <artifactId>s3-sync-stream-lib</artifactId>
+  <artifactId>sync-to-s3</artifactId>
   <version>X.Y.Z</version>
 </dependency>
 ```
@@ -146,12 +146,12 @@ Run the local tests
 ```
 ./gradlew test -i
 ```
-[s3-sync-stream-cli-0.0.17-all.jar](s3-sync-stream-cli/build/libs/s3-sync-stream-cli-0.0.17-all.jar)
+
 ### Build and run as command-line app
 ```bash
 ./gradlew clean shadowJar -i
 java -Dlogback.configurationFile=`pwd`/logback.xml \
-    -jar ./s3-sync-stream-cli/build/libs/s3-sync-stream-cli-0.0.17-all.jar \
+    -jar ./sync-to-s3-cli/build/libs/sync-to-s3-cli-0.0.17-all.jar \
     -c ./.private/aws-test-secrets \
     -d ./src/test/resources/test_a_1 \
     --filter "^[0-9a-zA-Z\\_]+\\.txt$"
@@ -228,7 +228,7 @@ Check Maven Local contains release version:
 ```
 CURRENT_VERSION=$(cat gradle.properties | grep version | cut -d "=" -f2)
 
-ls -l $HOME/.m2/repository/io/accelerate/s3-sync-stream/${CURRENT_VERSION}
+ls -l $HOME/.m2/repository/io/accelerate/sync-to-s3/${CURRENT_VERSION}
 ```
 
 Publish to Maven Central Staging repo

@@ -71,7 +71,7 @@ jobs:
         with:
           name: application-jar
           path: |
-            ./s3-sync-stream-cli/build/libs/*-all.jar
+            ./sync-to-s3-cli/build/libs/*-all.jar
   
   
   # ~~~~~~~~~~~~~ Release section, only triggered for v* tags ~~~~~~~~~~~~~~~~
